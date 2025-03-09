@@ -53,7 +53,7 @@ def is_pattern_match(buffer, offset, debug=False):
     Check if the bytes at the current offset match our pattern.
     
     Pattern:
-    (digit 4-180) 00 00 00 (digit 4-180) 00 00 00 ?? ?? 00 00 ?? ?? 00 00 00 00 00 00 00 00 00 00 ?? ?? FF FF ?? ?? FF FF
+    (digit 4-180) 00 00 00 (digit 4-180) 00 00 00 ?? ?? 00 00 ?? ?? 00 00 00 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? FF FF
     
     The first and fifth bytes should be between 4-180.
     ?? bytes can be any value and are ignored in the pattern matching.
@@ -113,15 +113,7 @@ def is_pattern_match(buffer, offset, debug=False):
                     print(f"  Fail at pos {i}: Value {buffer[offset+i]:02X} should be zero")
                 return False
         
-        # Positions 24-25 can be any value (??), skip checking
-        
-        # Positions 26-27 should be 0xFF
-        if buffer[offset+26] != 0xFF or buffer[offset+27] != 0xFF:
-            if debug and (0x04F04BB0 <= addr <= 0x04F04BE0):
-                print(f"  Fail at pos 26-27: Values {buffer[offset+26]:02X} {buffer[offset+27]:02X} should be 0xFF")
-            return False
-        
-        # Positions 28-29 can be any value (??), skip checking
+        # Positions 24-29 can be any value (??), skip checking
         
         # Positions 30-31 should be 0xFF
         if buffer[offset+30] != 0xFF or buffer[offset+31] != 0xFF:
