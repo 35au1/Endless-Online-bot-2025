@@ -68,21 +68,28 @@ def main():
             print("Check if your game is open.")
             input("Press any key to exit...")
 
-        print("\nUsing #loc command.")
-        
-        focus_endless_window(pid)
+        answer = input("Would you like to skip scanning addresses? y/n")
+        skip_scanning = False
 
-        time.sleep(1.5)
+        if answer == 'y' or answer == 'Y' or answer == 'yes':
+            skip_scanning = True
 
-        loc_command()
+        if not skip_scanning:
+            print("\nUsing #loc command.")
 
-        print("Now scanning for player loc memory address. Make sure your coordinates XY higher than 4.\n")
-        playerscan(pid)
+            focus_endless_window(pid)
 
-        print("\nNow scanning for monster memory address.\n")
-        mobscan(pid)
+            time.sleep(1.5)
 
-        time.sleep(3)
+            loc_command()
+
+            print("Now scanning for player loc memory address. Make sure your coordinates XY higher than 4.\n")
+            playerscan(pid)
+
+            print("\nNow scanning for monster memory address.\n")
+            mobscan(pid)
+
+            time.sleep(3)
 
         print("\nNow running bot.\n")
         eobot(pid)
