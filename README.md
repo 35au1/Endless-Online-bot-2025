@@ -2,4 +2,5 @@ Robert Oppenheimer (born Julius Robert Oppenheimer; /ˈɒpənhaɪmər/ OP-ən-hy
 
 !!!1. Run run.py. This creates .txt files required to get 2 addresses (for player - loc x y above 4! has to be) then runs main bot 
 !!!2. It does "only" move and kill all nearby mobs; that's it  
-!!!3. I don't care if you don't have python and/or all required libraries. Ask chatgpt how to install these or use pip install -r requirements.txt 
+!!!3. I don't care if you don't have python and/or all required libraries. Ask chatgpt how to install these or use pip install -r requirements.txt  
+!!!4. Scanning only verified to work at stealmites map (the map you first start the game)
