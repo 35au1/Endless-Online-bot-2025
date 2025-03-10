@@ -1,0 +1,3 @@
+Pymem~=1.14.0
+psutil~=7.0.0
+pywin32
