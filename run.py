@@ -91,10 +91,12 @@ def main():
 
             time.sleep(3)
 
-        print("\nNow running bot.\n")
+            input("\nNow if scanning was successful, find the map you want to bot on and press any key to continue.\n")
+
+        print("Now running bot.\n")
         eobot(pid)
 
-        print(f"Bot finished running.")
+        print(f"Bot finished running.\n")
         print("\n")
         input("Press any key to exit...")
 
