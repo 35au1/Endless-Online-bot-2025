@@ -78,7 +78,6 @@ def main():
             print("\nUsing #loc command.")
 
             focus_endless_window(pid)
-
             time.sleep(1.5)
 
             loc_command()
@@ -92,6 +91,9 @@ def main():
             time.sleep(3)
 
             input("\nNow if scanning was successful, find the map you want to bot on and press any key to continue.\n")
+
+        focus_endless_window(pid)
+        time.sleep(1.5)
 
         print("Now running bot.\n")
         eobot(pid)
