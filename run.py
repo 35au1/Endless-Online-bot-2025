@@ -66,12 +66,15 @@ def main():
         pid = select_endless_pid()
         if pid is None:
             print("Check if your game is open.")
-            input("Press any key to exit...")
+            print("\nPress any key to exit...")
+            sys.stdin.read(1)
+            return
 
-        answer = input("Would you like to skip scanning addresses? y/n")
+        print("Would you like to skip scanning addresses? y/n")
+        answer = sys.stdin.read(1)
         skip_scanning = False
 
-        if answer == 'y' or answer == 'Y' or answer == 'yes':
+        if answer == 'y' or answer == 'Y' or answer == 't' or answer == 'T' or answer == 'u':
             skip_scanning = True
 
         if not skip_scanning:
@@ -99,13 +102,13 @@ def main():
         eobot(pid)
 
         print(f"Bot finished running.\n")
-        print("\n")
-        input("Press any key to exit...")
+        print("\nPress any key to exit...")
+        sys.stdin.read(1)
 
     except(KeyboardInterrupt, SystemExit):
         print(f"Program interrupted. Reason: {sys.exc_info()[0]}")
-        print("\n")
-        input("Press any key to exit...")
+        print("\nPress any key to exit...")
+        sys.stdin.read(1)
 
 
 if __name__ == "__main__":
