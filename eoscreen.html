@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base64 Image Viewer</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        #status {
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            background: #e3f2fd;
+            color: #1976d2;
+        }
+        #imageContainer {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            max-width: 100%;
+        }
+        #img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background: #1976d2;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #1565c0;
+        }
+        .error {
+            background: #ffebee;
+            color: #c62828;
+        }
+    </style>
+</head>
+<body>
+    <h1>Base64 Image Viewer</h1>
+    <div id="status">Loading image...</div>
+    <div id="imageContainer">
+        <img id="img" alt="Base64 Image">
+    </div>
+    <button onclick="loadImage()">Refresh Image</button>
+
+    <script>
+        const imageUrl = 'https://gist.githubusercontent.com/35au1/80ad2616ae5de0495650ddc3d37603ac/raw/b0895ac486a81536f90bc3dd32c6983ab6173239/screenshot.png';
+        
+        function loadImage() {
+            const status = document.getElementById('status');
+            const img = document.getElementById('img');
+            
+            status.textContent = 'Loading image...';
+            status.className = '';
+            
+            fetch(imageUrl)
+                .then(response => {
+                    if (!response.ok) throw new Error('Failed to fetch image');
+                    return response.text();
+                })
+                .then(base64Data => {
+                    img.src = base64Data;
+                    status.textContent = 'Image loaded successfully!';
+                })
+                .catch(error => {
+                    status.textContent = 'Error loading image: ' + error.message;
+                    status.className = 'error';
+                    console.error('Error:', error);
+                });
+        }
+        
+        // Load image on page load
+        loadImage();
+    </script>
+</body>
+</html>
