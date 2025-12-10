@@ -74,7 +74,8 @@
     <button onclick="loadImage()">Refresh Image</button>
 
     <script>
-        const imageUrl = 'https://gist.githubusercontent.com/35au1/80ad2616ae5de0495650ddc3d37603ac/raw/b0895ac486a81536f90bc3dd32c6983ab6173239/screenshot.png';
+        // Remove the commit hash to always get the latest version
+        const imageUrl = 'https://gist.githubusercontent.com/35au1/80ad2616ae5de0495650ddc3d37603ac/raw/screenshot.png';
 
         function loadImage() {
             const status = document.getElementById('status');
@@ -83,7 +84,8 @@
             status.textContent = 'Loading image...';
             status.className = '';
 
-            fetch(imageUrl)
+            // Add cache-busting parameter to force fresh fetch
+            fetch(imageUrl + '?t=' + new Date().getTime())
                 .then(response => {
                     if (!response.ok) throw new Error('Failed to fetch image');
                     return response.text();
